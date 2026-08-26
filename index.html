@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Diary - 구현 화면</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="phone-frame">
+        <!-- 상단 헤더 -->
+        <div class="app-header">
+            <span class="app-title">Stream Diary</span>
+            <span class="status-indicator">● AI 분류 대기중</span>
+        </div>
+
+        <!-- 타임라인 영역 -->
+        <div class="timeline-container">
+            <div class="date-divider">오늘, 8월 19일</div>
+
+            <div class="chat-bubble ai-prompt">
+                지금 무슨 생각을 하시나요? 지금 무엇이 떠올랐나요?
+                지금 무엇을 기록하려고 하나요? 편하게 적어 보세요.
+                <div class="timestamp">오전 11:21</div>
+            </div>
+
+            <div class="chat-bubble user">
+                갑자기 문득 새로운 프로젝트 아이디어가 떠올랐다.
+                사용자가 기록할 때 아무 생각 안 들게 만드는 게 핵심이야.
+                <div class="timestamp">오전 11:22</div>
+            </div>
+        </div>
+
+        <!-- 하단 입력 영역 -->
+        <div class="input-section">
+            <button class="icon-btn" title="달력보기">📅</button>
+            <button class="icon-btn" title="할 일 보기">☑️</button>
+
+            <input
+                type="text"
+                class="input-box"
+                placeholder="지금 떠오른 생각을 입력하세요..."
+                readonly
+            >
+
+            <button class="icon-btn" title="음성 입력">🎤</button>
+            <button class="send-btn">↑</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
