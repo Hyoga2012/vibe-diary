@@ -1,37 +1,39 @@
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-
-    <!-- 스마트폰 / 갤럭시 폴드 / 노치·세이프에어리어 대응 -->
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover"
+<!-- 음성 입력 버튼 -->
+<button
+    class="icon-btn voice-btn"
+    title="음성 입력"
+    aria-label="음성 입력"
+    type="button"
+>
+    <svg
+        class="voice-icon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        focusable="false"
     >
+        <path d="M4 10v4"></path>
+        <path d="M8 7v10"></path>
+        <path d="M12 4v16"></path>
+        <path d="M16 7v10"></path>
+        <path d="M20 10v4"></path>
+    </svg>
+</button>
 
-    <meta name="theme-color" content="#ffffff">
-    <meta
-        name="description"
-        content="Stream Diary - 지금 떠오르는 생각을 편하게 기록하는 다이어리"
+
+<!-- 전송 버튼 -->
+<button
+    class="send-btn"
+    type="button"
+    aria-label="전송"
+    title="전송"
+>
+    <svg
+        class="send-icon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        focusable="false"
     >
-
-    <title>Stream Diary</title>
-
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!--
-        실제 Header / Timeline / Input UI는 js/app.js가 이 영역에 렌더링합니다.
-        반응형 레이아웃은 style.css의 .phone-frame, .app-header,
-        .timeline-container, .input-section 클래스와 함께 적용됩니다.
-    -->
-    <main id="app" aria-label="Stream Diary"></main>
-
-    <noscript>
-        <p>Stream Diary를 사용하려면 브라우저에서 JavaScript를 활성화해 주세요.</p>
-    </noscript>
-
-    <script type="module" src="js/app.js"></script>
-</body>
-</html>
+        <path d="M12 19V5"></path>
+        <path d="M6.5 10.5 12 5l5.5 5.5"></path>
+    </svg>
+</button>
