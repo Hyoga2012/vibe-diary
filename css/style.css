@@ -1,3 +1,7 @@
+/* =========================================
+   기본 설정
+========================================= */
+
 * {
     box-sizing: border-box;
 }
@@ -5,479 +9,674 @@
 html,
 body {
     width: 100%;
-    min-height: 100%;
-
+    height: 100%;
     margin: 0;
     padding: 0;
 }
 
 body {
-    background: #f3f4f6;
-}
-
-/* 전체 앱 */
-.phone-frame {
-    width: 100%;
     min-height: 100dvh;
 
-    margin: 0 auto;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans KR",
+        sans-serif;
 
-    display: flex;
-    flex-direction: column;
-
-    background: #fff;
+    background: #e9e3dc;
+    color: #241d18;
 
     overflow: hidden;
 }
 
-/* Header */
-.app-header {
+button,
+input {
+    font: inherit;
+}
+
+
+/* =========================================
+   APP
+========================================= */
+
+#app {
     width: 100%;
-    max-width: 720px;
+    height: 100dvh;
 
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    flex: 0 0 60px;
+    padding: 10px;
+}
+
+
+/* =========================================
+   다이어리 외부 프레임
+========================================= */
+
+.phone-frame {
+    width: min(100%, 1440px);
+    height: calc(100dvh - 20px);
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    background: #fffaf2;
+
+    border: 22px solid #5b392b;
+    border-radius: 36px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 30px rgba(64, 43, 31, 0.16);
+}
+
+
+/* 안쪽 종이선 느낌 */
+
+.phone-frame::before {
+    content: "";
+
+    position: absolute;
+    inset: 8px;
+
+    pointer-events: none;
+
+    border: 1px dashed #dfc29c;
+    border-radius: 18px;
+
+    z-index: 10;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.app-header {
+    min-height: 62px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 16px;
+    gap: 20px;
+
+    padding: 0 32px;
+
+    border-bottom: 1px solid #e8dfd4;
+
+    background: rgba(255, 250, 242, 0.96);
+
+    flex-shrink: 0;
 }
 
-/* Timeline */
+.app-title {
+    font-size: 16px;
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+.status-indicator {
+    font-size: 15px;
+    white-space: nowrap;
+
+    color: #29211d;
+}
+
+
+/* =========================================
+   TIMELINE
+========================================= */
+
 .timeline-container {
-    width: 100%;
-    max-width: 720px;
-
-    margin: 0 auto;
-
     flex: 1;
+
     min-height: 0;
 
     overflow-y: auto;
+    overflow-x: hidden;
 
-    padding: 16px;
+    padding:
+        30px
+        34px
+        120px;
+
+    scrollbar-width: thin;
 }
 
-/* Input */
-.input-section {
-    width: 100%;
-    max-width: 720px;
 
-    margin: 0 auto;
+/* 날짜 */
 
-    flex-shrink: 0;
+.date-divider {
+    margin: 0 0 4px 8px;
 
-    display: flex;
-    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
 
-    gap: 6px;
-
-    padding: 10px 12px;
-
-    padding-bottom:
-        calc(10px + env(safe-area-inset-bottom));
-
-    background: #fff;
-
-    border-top: 1px solid #eee;
+    color: #28201b;
 }
 
-/* Input */
-.input-box {
-    flex: 1;
-    min-width: 0;
 
-    height: 42px;
+/* =========================================
+   CHAT BUBBLE
+========================================= */
 
-    padding: 0 12px;
-
-    border: 1px solid #ddd;
-    border-radius: 21px;
-
-    font-size: 16px;
-}
-
-/* 채팅 */
 .chat-bubble {
-    max-width: 85%;
+    display: flex;
+    flex-direction: column;
+
+    width: fit-content;
+    max-width: 82%;
 
     margin-bottom: 12px;
 
-    padding: 12px 14px;
+    padding: 14px 16px 12px;
 
-    border-radius: 16px;
+    line-height: 1.55;
 
-    overflow-wrap: break-word;
+    border-radius: 18px;
+
+    overflow-wrap: anywhere;
     word-break: keep-all;
 }
 
-.chat-bubble.user {
-    margin-left: auto;
 
-    background: #007aff;
-    color: #fff;
-}
+/* AI 질문 */
 
 .chat-bubble.ai-prompt {
     margin-right: auto;
 
-    background: #f1f1f1;
-    color: #222;
+    width: min(78%, 730px);
+
+    background: #f2ebe2;
+
+    border: 1px solid #dfd4c7;
+
+    color: #241d18;
+
+    box-shadow:
+        0 3px 10px rgba(68, 50, 38, 0.05);
 }
 
-/* 작은 스마트폰 */
-@media (max-width: 399px) {
+
+/* 사용자 메시지 */
+
+.chat-bubble.user {
+    margin-left: auto;
+
+    width: min(78%, 730px);
+
+    background: #613b2d;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 18px rgba(83, 54, 42, 0.15);
+}
+
+
+/* 메시지 */
+
+.message {
+    font-size: 16px;
+}
+
+
+/* 시간 */
+
+.timestamp {
+    margin-top: 2px;
+
+    font-size: 14px;
+}
+
+.chat-bubble.ai-prompt .timestamp {
+    color: #372b25;
+}
+
+.chat-bubble.user .timestamp {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+
+/* =========================================
+   하단 입력 영역
+========================================= */
+
+.input-section {
+    min-height: 62px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        8px
+        14px
+        max(8px, env(safe-area-inset-bottom));
+
+    margin: 0 14px 12px;
+
+    flex-shrink: 0;
+
+    position: relative;
+    z-index: 20;
+
+    background: rgba(255, 250, 242, 0.96);
+
+    border: 1px solid #e1d6ca;
+    border-radius: 22px;
+
+    box-shadow:
+        0 -5px 20px rgba(55, 40, 31, 0.04);
+}
+
+
+/* =========================================
+   달력 / 할 일 버튼
+========================================= */
+
+.icon-btn,
+.utility-btn {
+    width: 36px;
+    height: 36px;
+
+    flex: 0 0 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid #b9b0a8;
+    border-radius: 5px;
+
+    background: #f7f5f2;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+.icon-btn:hover,
+.utility-btn:hover {
+    background: #eee9e4;
+}
+
+
+/* =========================================
+   입력창
+========================================= */
+
+.input-box {
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+    height: 42px;
+
+    padding: 0 16px;
+
+    border: 1px solid #ded5cb;
+    border-radius: 21px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #2a231f;
+
+    font-size: 15px;
+}
+
+.input-box::placeholder {
+    color: #92887f;
+}
+
+.input-box:focus {
+    border-color: #a99483;
+
+    box-shadow:
+        0 0 0 2px rgba(125, 101, 85, 0.08);
+}
+
+
+/* =========================================
+   ChatGPT 스타일 마이크
+========================================= */
+
+.voice-btn {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #342c27;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        transform 0.15s ease;
+}
+
+.voice-btn:hover {
+    background: rgba(52, 44, 39, 0.08);
+}
+
+.voice-btn:active {
+    transform: scale(0.92);
+}
+
+.voice-icon {
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+    stroke: currentColor;
+
+    stroke-width: 1.9;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================
+   ChatGPT 스타일 전송 버튼
+========================================= */
+
+.send-btn {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #302924;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        transform 0.15s ease;
+}
+
+.send-btn:hover:not(:disabled) {
+    background: #181411;
+}
+
+.send-btn:active:not(:disabled) {
+    transform: scale(0.92);
+}
+
+.send-icon {
+    width: 20px;
+    height: 20px;
+
+    fill: none;
+    stroke: currentColor;
+
+    stroke-width: 2.2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* 비활성 */
+
+.send-btn:disabled {
+    background: #d8d4d0;
+
+    color: #ffffff;
+
+    cursor: default;
+}
+
+
+/* =========================================
+   태블릿
+========================================= */
+
+@media (max-width: 900px) {
+
+    #app {
+        padding: 0;
+    }
+
+    .phone-frame {
+        width: 100%;
+        height: 100dvh;
+
+        border-width: 12px;
+        border-radius: 24px;
+    }
+
     .app-header {
-        padding: 0 12px;
+        padding: 0 24px;
     }
 
     .timeline-container {
-        padding: 12px;
+        padding:
+            26px
+            26px
+            110px;
     }
 
-    .input-section {
-        padding-left: 8px;
-        padding-right: 8px;
+    .chat-bubble {
+        max-width: 86%;
+    }
+}
+
+
+/* =========================================
+   스마트폰
+========================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        background: #fffaf2;
+    }
+
+    .phone-frame {
+        width: 100%;
+        height: 100dvh;
+
+        border: 0;
+        border-radius: 0;
+
+        box-shadow: none;
+    }
+
+    .phone-frame::before {
+        display: none;
+    }
+
+    .app-header {
+        min-height: 56px;
+
+        padding:
+            env(safe-area-inset-top)
+            16px
+            0;
+
+        gap: 10px;
+    }
+
+    .app-title {
+        font-size: 15px;
+    }
+
+    .status-indicator {
+        font-size: 13px;
+    }
+
+    .timeline-container {
+        padding:
+            20px
+            14px
+            100px;
+    }
+
+    .date-divider {
+        margin-left: 2px;
+
+        font-size: 14px;
     }
 
     .chat-bubble {
         max-width: 90%;
-    }
-}
 
-/* 폴드 펼친 화면 / 태블릿 */
-@media (min-width: 600px) {
-    .app-header,
-    .timeline-container,
-    .input-section {
-        max-width: 720px;
-    }
-}
+        padding: 12px 14px;
 
-/* 아주 넓은 화면 */
-@media (min-width: 900px) {
-    .app-header,
-    .timeline-container,
-    .input-section {
-        max-width: 800px;
-    }
-}
-
-/* 가로로 넓게 펼쳐진 경우 */
-@media (min-width: 600px) and (orientation: landscape) {
-    .timeline-container {
-        max-width: 800px;
-    }
-}
-
-/* =========================================================
-   Notebook Diary Theme
-   - 노트 종이 느낌의 테두리와 줄무늬
-   - 데스크톱에서는 노트 카드, 모바일/폴드에서는 왜곡 없이 전체 화면
-========================================================= */
-
-.phone-frame {
-    position: relative;
-    background: #fffdf8;
-}
-
-/* 본문을 은은한 노트 종이처럼 */
-.timeline-container {
-    position: relative;
-    background-color: #fffdf8;
-    background-image:
-        linear-gradient(to right, transparent 0, transparent 54px, rgba(239, 68, 68, 0.18) 54px, rgba(239, 68, 68, 0.18) 55px, transparent 55px),
-        repeating-linear-gradient(to bottom, transparent 0, transparent 31px, rgba(59, 130, 246, 0.10) 31px, rgba(59, 130, 246, 0.10) 32px);
-    background-attachment: local;
-}
-
-/* 채팅은 종이 배경 위에서도 또렷하게 */
-.chat-bubble.ai-prompt {
-    background: rgba(248, 247, 243, 0.96);
-    border: 1px solid rgba(120, 113, 108, 0.10);
-}
-
-.chat-bubble.user {
-    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.14);
-}
-
-/* 헤더/입력창은 종이와 자연스럽게 연결 */
-.app-header,
-.input-section {
-    background: rgba(255, 253, 248, 0.96);
-}
-
-/* 데스크톱: 실제 노트 한 권처럼 */
-@media (min-width: 900px) {
-    .phone-frame {
-        border: 1px solid #d8d1c5;
-        border-left: 14px solid #c9bca8;
-        border-radius: 20px 28px 28px 20px;
-        box-shadow:
-            0 22px 60px rgba(61, 54, 45, 0.12),
-            0 4px 12px rgba(61, 54, 45, 0.08),
-            inset 3px 0 0 rgba(255, 255, 255, 0.55);
-        overflow: hidden;
+        border-radius: 16px;
     }
 
-    /* 노트 제본 쪽의 세로 라인 */
-    .phone-frame::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 12px;
-        width: 1px;
-        background: rgba(120, 113, 108, 0.18);
-        z-index: 40;
-        pointer-events: none;
+    .chat-bubble.ai-prompt,
+    .chat-bubble.user {
+        width: auto;
+        max-width: 90%;
     }
 
-    /* 종이 페이지의 얇은 이중 테두리 */
-    .phone-frame::after {
-        content: "";
-        position: absolute;
-        inset: 8px 8px 8px 10px;
-        border: 1px solid rgba(120, 113, 108, 0.10);
-        border-radius: 14px 20px 20px 14px;
-        pointer-events: none;
-        z-index: 39;
+    .message {
+        font-size: 15px;
     }
 
-    .app-header,
-    .timeline-container,
-    .input-section {
-        position: relative;
-        z-index: 1;
-    }
-
-    .timeline-container {
-        padding-left: 74px;
-        padding-right: 34px;
-        background-image:
-            linear-gradient(to right, transparent 0, transparent 42px, rgba(239, 68, 68, 0.18) 42px, rgba(239, 68, 68, 0.18) 43px, transparent 43px),
-            repeating-linear-gradient(to bottom, transparent 0, transparent 31px, rgba(59, 130, 246, 0.10) 31px, rgba(59, 130, 246, 0.10) 32px);
-    }
-}
-
-/* 모바일/폴드 접힘: 테두리는 가볍게, 공간 확보 우선 */
-@media (max-width: 899px) {
-    .phone-frame {
-        border: 0;
-        border-radius: 0;
-        box-shadow: none;
-    }
-
-    .timeline-container {
-        background-image:
-            repeating-linear-gradient(to bottom, transparent 0, transparent 31px, rgba(59, 130, 246, 0.07) 31px, rgba(59, 130, 246, 0.07) 32px);
-    }
-}
-
-/* 작은 스마트폰에서는 줄 간격을 조금 좁혀 가독성 유지 */
-@media (max-width: 399px) {
-    .timeline-container {
-        background-image:
-            repeating-linear-gradient(to bottom, transparent 0, transparent 29px, rgba(59, 130, 246, 0.06) 29px, rgba(59, 130, 246, 0.06) 30px);
-    }
-}
-
-/* =========================================================
-   Premium Leather Diary Theme Override
-========================================================= */
-:root {
-    --leather-dark: #3a241b;
-    --leather-mid: #5a3829;
-    --leather-light: #76503b;
-    --leather-edge: #2b1a14;
-    --paper: #fffaf0;
-    --paper-soft: #fbf4e8;
-    --ink: #2d2925;
-    --gold: #b8955e;
-}
-
-body {
-    background:
-        radial-gradient(circle at 50% 8%, rgba(255,255,255,.8), transparent 34%),
-        linear-gradient(145deg, #e7e1d8, #d5cec4);
-    color: var(--ink);
-}
-
-.phone-frame {
-    background: var(--paper);
-}
-
-.app-header {
-    background: rgba(255, 250, 240, .96);
-    border-bottom: 1px solid rgba(80, 57, 42, .10);
-}
-
-.timeline-container {
-    background-color: var(--paper);
-    background-image: none;
-}
-
-.input-section {
-    background: rgba(255, 250, 240, .97);
-    border-top: 1px solid rgba(80, 57, 42, .12);
-}
-
-.input-box {
-    background: #fffdf8;
-    border-color: rgba(91, 65, 48, .20);
-    color: var(--ink);
-}
-
-.input-box:focus {
-    outline: none;
-    border-color: rgba(184, 149, 94, .72);
-    box-shadow: 0 0 0 3px rgba(184, 149, 94, .12);
-}
-
-.chat-bubble.ai-prompt {
-    background: #f3ece2;
-    color: #3d342d;
-    border: 1px solid rgba(87, 62, 46, .09);
-    box-shadow: 0 3px 12px rgba(67, 46, 34, .06);
-}
-
-.chat-bubble.user {
-    background: linear-gradient(145deg, #674333, #4b3025);
-    color: #fffaf3;
-    box-shadow: 0 7px 18px rgba(55, 34, 25, .18);
-}
-
-/* Desktop: 가죽 커버 안에 종이가 끼워진 다이어리 */
-@media (min-width: 900px) {
-    body {
-        padding: 26px;
-    }
-
-    .phone-frame {
-        width: min(960px, calc(100vw - 52px));
-        height: min(900px, calc(100dvh - 52px));
-        min-height: 620px;
-        border: 14px solid var(--leather-mid);
-        border-left-width: 22px;
-        border-radius: 26px 34px 34px 26px;
-        box-shadow:
-            0 28px 70px rgba(45, 31, 23, .23),
-            0 8px 20px rgba(45, 31, 23, .14),
-            inset 0 0 0 1px rgba(255,255,255,.13),
-            inset 0 0 0 3px rgba(40,24,18,.18);
-        position: relative;
-        overflow: hidden;
-    }
-
-    /* 가죽 결 + 눌러박은 안쪽 라인 */
-    .phone-frame::before {
-        content: "";
-        position: absolute;
-        inset: -14px;
-        border-radius: 27px 35px 35px 27px;
-        pointer-events: none;
-        z-index: 50;
-        background:
-            radial-gradient(circle at 12% 18%, rgba(255,255,255,.055) 0 1px, transparent 1.5px),
-            radial-gradient(circle at 73% 66%, rgba(0,0,0,.045) 0 1px, transparent 1.5px);
-        background-size: 17px 19px, 23px 21px;
-        box-shadow:
-            inset 0 0 0 2px rgba(39, 23, 17, .32),
-            inset 0 0 0 6px rgba(255,255,255,.035);
-    }
-
-    /* 금빛 스티치 */
-    .phone-frame::after {
-        content: "";
-        position: absolute;
-        inset: 7px;
-        border: 1px dashed rgba(184, 149, 94, .58);
-        border-radius: 14px 20px 20px 14px;
-        pointer-events: none;
-        z-index: 49;
-    }
-
-    .app-header,
-    .timeline-container,
-    .input-section {
-        width: 100%;
-        max-width: none;
-        position: relative;
-        z-index: 1;
-    }
-
-    .app-header {
-        padding-left: 32px;
-        padding-right: 32px;
-    }
-
-    .timeline-container {
-        padding: 26px 34px 40px;
-        background:
-            linear-gradient(90deg, rgba(97, 69, 49, .035), transparent 5%, transparent 95%, rgba(97, 69, 49, .025)),
-            var(--paper);
-        box-shadow:
-            inset 8px 0 14px rgba(71, 49, 35, .035),
-            inset -5px 0 10px rgba(71, 49, 35, .025);
+    .timestamp {
+        font-size: 13px;
     }
 
     .input-section {
-        margin: 0 20px 18px;
-        width: calc(100% - 40px);
-        padding: 9px;
-        border: 1px solid rgba(90, 62, 44, .14);
-        border-radius: 22px;
-        box-shadow: 0 7px 22px rgba(66, 45, 32, .08);
-    }
-}
+        margin:
+            0
+            8px
+            max(8px, env(safe-area-inset-bottom));
 
-/* Fold 펼침 / tablet: 얇은 가죽 프레임 */
-@media (min-width: 600px) and (max-width: 899px) {
-    body {
-        background: #e2dcd3;
-    }
+        padding: 7px 8px;
 
-    .phone-frame {
-        width: calc(100% - 20px);
-        height: calc(100dvh - 20px);
-        min-height: 0;
-        margin: 10px auto;
-        border: 7px solid var(--leather-mid);
-        border-left-width: 11px;
+        gap: 5px;
+
         border-radius: 20px;
-        box-shadow: 0 12px 30px rgba(52, 35, 25, .16);
     }
 
-    .timeline-container {
-        background: var(--paper);
+    .input-box {
+        height: 40px;
+
+        padding: 0 13px;
+
+        font-size: 14px;
+    }
+
+    .icon-btn,
+    .utility-btn {
+        width: 34px;
+        height: 34px;
+
+        flex-basis: 34px;
+    }
+
+    .voice-btn,
+    .send-btn {
+        width: 38px;
+        height: 38px;
+
+        flex-basis: 38px;
     }
 }
 
-/* Fold 접힘 / phone: 화면 공간 우선, 가죽은 상하 포인트만 */
-@media (max-width: 599px) {
-    body {
-        background: var(--paper);
-    }
 
-    .phone-frame {
-        border: 0;
-        border-radius: 0;
-        box-shadow: none;
-        background: var(--paper);
-    }
+/* =========================================
+   Galaxy Fold / 아주 작은 스마트폰
+========================================= */
 
-    .app-header {
-        border-top: 5px solid var(--leather-mid);
+@media (max-width: 399px) {
+
+    .status-indicator {
+        font-size: 12px;
     }
 
     .timeline-container {
-        background: var(--paper);
+        padding:
+            16px
+            10px
+            90px;
+    }
+
+    .chat-bubble {
+        max-width: 94%;
+    }
+
+    /*
+       Fold에서는 입력 공간 확보를 위해
+       보조 버튼을 숨김
+    */
+
+    .utility-btn {
+        display: none;
     }
 
     .input-section {
-        border-bottom: 5px solid var(--leather-mid);
+        margin-left: 5px;
+        margin-right: 5px;
+
+        gap: 3px;
+    }
+
+    .input-box {
+        height: 38px;
+
+        padding: 0 11px;
+
+        font-size: 13px;
+    }
+
+    .voice-btn,
+    .send-btn {
+        width: 36px;
+        height: 36px;
+
+        flex: 0 0 36px;
+    }
+
+    .voice-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .send-icon {
+        width: 18px;
+        height: 18px;
     }
 }
